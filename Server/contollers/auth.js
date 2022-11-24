@@ -52,7 +52,6 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  console.log("logout")
   res
     .clearCookie("accessToken", {
       secure: true,

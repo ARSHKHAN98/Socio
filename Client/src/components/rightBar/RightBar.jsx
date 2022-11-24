@@ -40,7 +40,6 @@ const handleUnfollow =async(e)=>{
     catch(e){setRel([])};
   }
 }
-
   return (
     <div className="rightBar">
       <div className="container">

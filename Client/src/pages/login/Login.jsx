@@ -4,30 +4,28 @@ import { AuthContext } from "../../context/authContext";
 import "./login.scss";
 
 const Login = () => {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  // console.log("h");
+  const [err, setErr] = useState(null);
 
-  const [inputs,setInputs]=useState({
-    email:"",
-    password:""
-  })
+  const navigate = useNavigate();
 
-  const [err,setErr]=useState(null);
-  
-  const navigate=useNavigate();
-
-  const handleChange = e=>{
-    setInputs(prev=>({...prev,[e.target.name]:e.target.value}))
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  
+
   const { login } = useContext(AuthContext);
-  
-  const handleLogin = async e => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    try{
+    try {
       await login(inputs);
       navigate("/");
-    }
-    catch(ee){
-      setErr(ee.response.data.message)
+    } catch (ee) {
+      setErr(ee.response.data.message);
     }
   };
 
@@ -36,11 +34,7 @@ const Login = () => {
       <div className="card">
         <div className="left">
           <h1>Hello World.</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
-          </p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum, alias totam numquam ipsa exercitationem dignissimos, error nam, consequatur.</p>
           <span>Don't you have an account?</span>
           <Link to="/register">
             <button>Register</button>
@@ -49,9 +43,9 @@ const Login = () => {
         <div className="right">
           <h1>Login</h1>
           <form>
-            <input type="text" placeholder="Email" name="email" onChange={handleChange}/>
-            <input type="password" placeholder="Password" name="password" onChange={handleChange}/>
-            {err&&err}
+            <input type="text" placeholder="Email" name="email" onChange={handleChange} />
+            <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+            {err && err}
             <button onClick={handleLogin}>Login</button>
           </form>
         </div>

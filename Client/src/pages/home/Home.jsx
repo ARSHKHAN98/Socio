@@ -7,7 +7,6 @@ import "./home.scss"
 const Home = () => {
 
   const {currentUser} = useContext(AuthContext)
-
   return (
     <div className="home">
       <Share/>

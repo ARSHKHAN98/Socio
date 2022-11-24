@@ -12,8 +12,8 @@ import moment from  "moment"
 import axios from "axios";
 
 
-const Post = ({ post}) => {
-  
+const Post = ({ post,usr}) => {
+  console.log(usr);
   const {setPosts,posts}=useContext(PostContext)
   const { currentUser } = useContext(AuthContext);
   const [commentOpen, setCommentOpen] = useState(false);
