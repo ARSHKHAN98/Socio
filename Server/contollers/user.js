@@ -25,7 +25,7 @@ export const updateUser = async (req, res) => {
   try {
     const updatedPost = await user.findByIdAndUpdate(ID, { ...uuser, ID }, { new: true });
     // console.log(ID)
-    console.log(updatedPost);
+    // console.log(updatedPost);
     res.json(updatedPost);
   } catch (er) {
     console.log(er);

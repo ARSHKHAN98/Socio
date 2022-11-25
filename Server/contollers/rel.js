@@ -3,7 +3,7 @@ import rels from "../models/relationships.js";
 export const getRel = async (req, res) => {
   try {
     const allRels = await rels.find();
-    res.status(200).json(allRels.map((rel)=>rel.followedID));
+    res.status(200).json(allRels.map((rel) => rel.followedID));
   } catch (er) {
     console.log(er);
   }

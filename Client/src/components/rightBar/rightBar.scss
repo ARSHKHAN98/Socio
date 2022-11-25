@@ -9,10 +9,10 @@
     overflow: scroll;
     background-color: themed("bgSoft");
 
-    @include mobile{
+    @include mobile {
       display: none;
     }
-    @include tablet{
+    @include tablet {
       display: none;
     }
 
@@ -81,16 +81,21 @@
 
             button {
               border: none;
-              padding: 5px;
-              color: white;
+              padding-top: 5px;
+              padding-bottom: 5px;
+              padding-left: 15px;
+              padding-right: 15px;
               cursor: pointer;
+              font-size: medium;
+              color:white;
+              border-radius: 5%;
 
               &:first-child {
-                background-color: #5271ff;
+                background-color: grey;
               }
 
               &:last-child {
-                background-color: #f0544f;
+                background-color: gray;
               }
             }
           }

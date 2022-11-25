@@ -11,7 +11,7 @@
     position: sticky;
     top: 0;
     background-color: themed("bg");
-    color:themed("textColor");
+    color: themed("textColor");
     z-index: 999;
 
     .left {
@@ -39,11 +39,11 @@
           background-color: transparent;
           color: themed("textColor");
 
-          @include mobile{
+          @include mobile {
             display: none;
           }
 
-          @include tablet{
+          @include tablet {
             width: 200px;
           }
         }
@@ -55,17 +55,31 @@
       align-items: center;
       gap: 20px;
 
-      @include mobile{
+      @include mobile {
         display: none;
       }
-
+      .button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: none;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-left: 20px;
+        padding-right: 20px;
+        cursor: pointer;
+        background-color:grey;
+        color: white;
+        font-size: 17px;
+        border-radius: 5%;
+      }
       .user {
         display: flex;
         align-items: center;
         gap: 20px;
         font-weight: 500;
 
-        @include tablet{
+        @include tablet {
           display: none;
         }
 

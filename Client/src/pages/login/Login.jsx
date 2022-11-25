@@ -8,7 +8,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-  // console.log("h");
   const [err, setErr] = useState(null);
 
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(inputs);
+      login(inputs);
       navigate("/");
     } catch (ee) {
       setErr(ee.response.data.message);

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
 import axios from "axios"
+import FileBase from "react-file-base64"
 
 const Register = () => {
 
@@ -17,17 +18,17 @@ const Register = () => {
   const [err,setErr]=useState(null);
 
   const navigate=useNavigate();
+  const [cover, setCover] = useState(null);
+  const [profile, setProfile] = useState(null);
 
   const handleChange = e=>{
     setInputs(prev=>({...prev,[e.target.name]:e.target.value}))
   };
 
-  // console.log(inputs)
-
   const handleClick = async e=>{
     e.preventDefault();
     try{
-      await axios.post("http://localhost:8800/api/auth/register",inputs);
+      await axios.post("http://localhost:8800/api/auth/register",{...inputs,profilepic:profile,coverpic:cover});
       navigate("/login")
       setInputs({
         username:"",
@@ -35,6 +36,8 @@ const Register = () => {
         password:"",
         name:"",
       })
+      setCover(null)
+      setProfile(null);
     }catch(er)
     {
       // console.log(er.response.data.message);
@@ -46,11 +49,12 @@ const Register = () => {
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>Lama Social.</h1>
+          <h1>Socio.</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
             alias totam numquam ipsa exercitationem dignissimos, error nam,
             consequatur.
+            
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">
@@ -60,13 +64,26 @@ const Register = () => {
         <div className="right">
           <h1>Register</h1>
           <form>
+          <div className="files">
+            <label htmlFor="cover">
+              <span>Cover Picture</span>
+              <div className="imgContainer">
+                <img src={cover ? "" : cover} alt="" />
+              <FileBase type="file" multiple={false} onDone={({ base64 }) => setCover(base64)} />
+              </div>
+            </label>
+            <label htmlFor="profile">
+              <span>Profile Picture</span>
+              <div className="imgContainer">
+                <img src={profile ? "" : profile} alt="" />
+              <FileBase type="file" multiple={false} onDone={({ base64 }) => setProfile(base64)} />
+              </div>
+            </label>
+          </div>
             <input type="text" placeholder="Username" name="username" onChange={handleChange} value={inputs.username}/>
             <input type="email" placeholder="Email"  name="email" onChange={handleChange} value={inputs.email}/>
             <input type="password" placeholder="Password" name="password" onChange={handleChange}  />
             <input type="text" placeholder="Name"  name="name" onChange={handleChange} value={inputs.name}/>
-            <input type="text" placeholder="Website" name="website" onChange={handleChange} value={inputs.website}/>
-            <input type="text" placeholder="City" name="city" onChange={handleChange} value={inputs.city}/>
-            {/* <input type="text" placeholder="Coverpic" name="username" onChange={handleChange} value={inputs.username}/> */}
             {err&&err}
             <button onClick={handleClick}>Register</button>
           </form>
